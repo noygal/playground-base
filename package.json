@@ -27,7 +27,12 @@
     "managed-require": "0.0.3"
   },
   "dependencies": {
+    "browserify": "^10.2.0",
+    "es6-promise": "^2.1.1",
     "express": "^4.12.3",
-    "gulp-nodemon": "^2.0.3"
+    "gulp-babel": "^5.1.0",
+    "gulp-nodemon": "^2.0.3",
+    "redis": "^0.12.1",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
