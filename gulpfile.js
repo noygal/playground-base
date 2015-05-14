@@ -10,12 +10,19 @@ var mocha = require('gulp-mocha');
 var bower = require('gulp-bower');
 var del = require('del');
 var less = require('gulp-less');
+var babel = require('gulp-babel');
+var babelify = require('babelify');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var nodemon = require('gulp-nodemon');
 
 var paths = {
   dist : 'dist/',
   distPublic : 'dist/public',
   src : 'src/',
   js : 'src/**/*.js',
+  jsPublic : 'src/public/app.js',
+  jsPublicAll : 'src/public/**/*.js',
   html : 'src/**/*.html',
   less : 'src/public/style.less',
   spec : 'src/**/*.spec.js',
@@ -25,8 +32,12 @@ var paths = {
 var watches = [];
 
 function createGulpTask(taskName, options) {
+  watches.push({
+    src : options.src,
+    task: taskName
+  });
   gulp.task(taskName, function() {
-    var stream = gulp.src(options.src,{read: true});
+    var stream = gulp.src(options.src);
     if (!!options.plugins)
       options.plugins.forEach(function(plugin) {
         if (!!plugin.bin)
@@ -39,14 +50,28 @@ function createGulpTask(taskName, options) {
 }
 
 createGulpTask('build:js', {
-  src : [paths.js, '!' + paths.spec],
+  src : [paths.js, '!' + paths.spec, '!' + paths.jsPublic],
   dest : paths.dist,
+  plugins : [{
+    bin: babel
+  }]
+});
+
+gulp.task('build:jsPublic', function() {
+    browserify({
+      entries: paths.jsPublic,
+      debug: true
+    })
+    .transform(babelify)
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(gulp.dest(paths.distPublic));
 });
 
 createGulpTask('test:js', {
   src : paths.spec,
   plugins : [{
-    bin : mocha,
+    bin : mocha
   }]
 });
 
@@ -63,13 +88,6 @@ createGulpTask('build:less', {
   }]
 });
 
-gulp.task('build:less1', function () {
-  var stream = gulp.src(paths.less);
-  stream = stream.pipe(less());
-   stream =  stream.pipe(gulp.dest(paths.dist + 'public/'));
-   return stream;
-});
-
 gulp.task('clean', function (cb) {
   del([
     paths.dist
@@ -83,18 +101,31 @@ gulp.task('clean:all', function (cb) {
   ], cb);
 });
 
-gulp.task('build', ['build:js', 'build:html', 'build:less']);
+gulp.task('serve', function () {
+  nodemon({ 
+    script: paths.dist + 'server.js',
+    watch : paths.distPublic
+    })
+    .on('restart', function () {
+//      console.log('restarted!');
+    });
+});
 
-//gulp.task('test', ['test:js']);
+gulp.task('build', ['build:js', 'build:html', 'build:less', 'build:jsPublic']);
 
 gulp.task('test', gulpSequence('build:js', 'test:js'));
 
 gulp.task('watch', function() {
-  gulp.watch([paths.js], 'test');
+  watches.forEach(function(watch) {
+    gulp.watch(watch.src, [watch.task]);
+  });
+   gulp.watch(paths.jsPublicAll, ['build:jsPublic']);
 });
+
+gulp.task('dev', gulpSequence('build', 'watch', 'serve'));
+
+gulp.task('default', ['dev']);
 
 gulp.task('npm', function(cb) {
   cb();
 });
-
-//gulp.task('default', ['build', 'test', 'watch']);
