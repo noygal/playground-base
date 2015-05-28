@@ -15,6 +15,7 @@ var babelify = require('babelify');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var nodemon = require('gulp-nodemon');
+var managedBower = require('managed-bower');
 
 var paths = {
   dist : 'dist/',
@@ -43,7 +44,7 @@ function createGulpTask(taskName, options) {
         if (!!plugin.bin)
           stream = stream.pipe(plugin.bin(plugin.options));
       });
-    if (!!options.dest) 
+    if (!!options.dest)
       stream = stream.pipe(gulp.dest(options.dest));
     return stream;
   });
@@ -78,6 +79,12 @@ createGulpTask('test:js', {
 createGulpTask('build:html', {
   src : paths.html,
   dest : paths.dist,
+  plugins : [{
+    bin : managedBower,
+    options : {
+      directory : paths.distPublic + '/vendors'
+    }
+  }]
 });
 
 createGulpTask('build:less', {
@@ -102,7 +109,7 @@ gulp.task('clean:all', function (cb) {
 });
 
 gulp.task('serve', function () {
-  nodemon({ 
+  nodemon({
     script: paths.dist + 'server.js',
     watch : paths.distPublic
     })
