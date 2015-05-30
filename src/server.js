@@ -13,7 +13,6 @@ let parser = new(require('./public/components/parser').HtmlParser)();
 app.get('/api/serializer', (req, res) => {
   let url = req.param('url');
   let json = req.param('json') === 'true';
-  console.log(req.param('json'))
   request(url)
   .then((rawHtml) => {
     if (!!json)

@@ -4,6 +4,8 @@ This playground is a visual html DOM presenter, solution is [d3](http://d3js.org
 
 Make sure to set full url on the input field before submit, there's no parameters validation or error handling.
 
+![example](https://github.com/noygal/playground-base/blob/d3-html-tree/example.png)
+
 ##TL;DR
 To build&run
 
