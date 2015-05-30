@@ -28,22 +28,24 @@ export function D3() {
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.json("/api/serializer", function(error, flare) {
-    root = flare;
-    root.x0 = height / 2;
-    root.y0 = 0;
-		console.log(flare);
-    function collapse(d) {
-      if (d.children) {
-        d._children = d.children;
-        d._children.forEach(collapse);
-        d.children = null;
-      }
-    }
+	function setTree(data) {
+	  // d3.json(url, function(error, response) {
+			// console.log(data);
+	    root = data;
+	    root.x0 = height / 2;
+	    root.y0 = 0;
+	    function collapse(d) {
+	      if (d.children) {
+	        d._children = d.children;
+	        d._children.forEach(collapse);
+	        d.children = null;
+	      }
+	    }
 
-    root.children.forEach(collapse);
-    update(root);
-  });
+	    root.children.forEach(collapse);
+	    update(root);
+	  // });
+	}
 
   d3.select(self.frameElement).style("height", "800px");
 
@@ -87,7 +89,7 @@ export function D3() {
         return d.children || d._children ? "end" : "start";
       })
       .text(function(d) {
-        return d.name;
+        return d.children || d._children ? d.name : d.data;
       })
       .style("fill-opacity", 1e-6);
 
@@ -179,4 +181,7 @@ export function D3() {
     }
     update(d);
   }
+	return {
+		setTree : setTree
+	}
 }

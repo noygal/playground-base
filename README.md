@@ -1,8 +1,19 @@
 # playground-base
 
-This is a full stack starter project to be used as experiments playground for checking out new technologies and testing out new tools.
+This playground is a visual html DOM presenter, solution is [d3](http://d3js.org/) based, html parsing can been done on server side or client side.
 
-##### Watch out, dragons ahead.
+Make sure to set full url on the input field before submit, there's no parameters validation or error handling.
+
+##TL;DR
+To build&run
+
+```
+npm install
+gulp npm
+gulp
+```
+Then point your browser to ```http://localhost:3000```
+
 
 ### General  
 
@@ -42,4 +53,4 @@ We use [babel](https://babeljs.io/) to compile es6 to es5, every .js file under 
 2. Client - 'src/public/app.js' get browserify.
 3. Shared - all the code placed under 'src/public/' folder should be accessible to both the client and the server.
 
-All *.spec.js files are piped to mocha, there is no client/e2e tests, but you can still use mocha to test client js code, just make sure there's no external dependecies in the code (or inject those), taking TDD approach would most likely produce easy solutions for that. 
+All *.spec.js files are piped to mocha, there is no client/e2e tests, but you can still use mocha to test client js code, just make sure there's no external dependecies in the code (or inject those), taking TDD approach would most likely produce easy solutions for that.

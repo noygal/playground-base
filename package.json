@@ -31,11 +31,14 @@
     "babelify": "^6.1.2",
     "browserify": "^10.2.1",
     "del": "^1.2.0",
+    "es6-promise": "^2.1.1",
     "express": "^4.12.3",
     "gulp-bower": "0.0.10",
     "gulp-less": "^3.0.3",
     "gulp-mocha": "^2.1.0",
     "gulp-nodemon": "^2.0.3",
+    "htmlparser": "^1.7.7",
+    "request": "^2.56.0",
     "vinyl-source-stream": "^1.1.0"
   }
 }

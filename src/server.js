@@ -1,16 +1,29 @@
-// var m1 = require('./module/module');
-// var m2 = require('./public/module/module');
-
-// let a = new m1.A();
-// let b = new m2.B();
+require('es6-promise').polyfill();
 
 var path = require('path');
 
 var express = require('express');
 var app = express();
 
-app.get('/api/serializer', function (req, res) {
-  res.send(flare);
+let request = require('./components/request').makeRequest;
+
+let parser = new(require('./public/components/parser').HtmlParser)();
+
+
+app.get('/api/serializer', (req, res) => {
+  let url = req.param('url');
+  let json = req.param('json') === 'true';
+  console.log(req.param('json'))
+  request(url)
+  .then((rawHtml) => {
+    if (!!json)
+      res.send(parser.process(rawHtml));
+    else
+      res.send(rawHtml);
+  })
+  .catch((error) => {
+    res.send(error).status(500);
+  });
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
