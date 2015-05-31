@@ -1,11 +1,12 @@
 var gulp = require('gulp');
 var gulpSequence = require('gulp-sequence');
-require = require('managed-require');
-require.config({
-  npmLoad: {
-     loglevel: 'verbose'
-  }
-});
+// require = require('managed-require');
+// require.config({
+//   npmLoad: {
+//      loglevel: 'verbose',
+//      save-dev : true
+//   }
+// });
 var mocha = require('gulp-mocha');
 var bower = require('gulp-bower');
 var del = require('del');

@@ -25,17 +25,17 @@
     "gulp": "^3.8.11",
     "gulp-sequence": "^0.3.2",
     "managed-require": "0.0.3",
-    "managed-bower": "^0.0.4"
-  },
-  "dependencies": {
+    "managed-bower": "^0.0.4",
     "babelify": "^6.1.2",
     "browserify": "^10.2.1",
     "del": "^1.2.0",
-    "express": "^4.12.3",
     "gulp-bower": "0.0.10",
     "gulp-less": "^3.0.3",
     "gulp-mocha": "^2.1.0",
     "gulp-nodemon": "^2.0.3",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "express": "^4.12.3"
   }
 }
