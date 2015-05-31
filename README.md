@@ -1,8 +1,17 @@
 # playground-base
 
-This is a full stack starter project to be used as experiments playground for checking out new technologies and testing out new tools.
+ReactJS CollapsibleSection demo;
 
-##### Watch out, dragons ahead.
+####TL;DR
+Execute:
+```
+npm install
+gulp
+```
+
+Then point your browser to [http://localhost:3000/](http://localhost:3000/)
+
+CollapsibleSection component can be found [here](https://github.com/noygal/playground-base/blob/react/src/public/module/CollapsibleSection.jsx)
 
 ### General  
 
@@ -14,7 +23,6 @@ Automation is done with [gulp](http://gulpjs.com/), in order to initialize the p
 
 ```
 npm install
-gulp npm
 ```
 
 Then just run:
@@ -42,4 +50,4 @@ We use [babel](https://babeljs.io/) to compile es6 to es5, every .js file under 
 2. Client - 'src/public/app.js' get browserify.
 3. Shared - all the code placed under 'src/public/' folder should be accessible to both the client and the server.
 
-All *.spec.js files are piped to mocha, there is no client/e2e tests, but you can still use mocha to test client js code, just make sure there's no external dependecies in the code (or inject those), taking TDD approach would most likely produce easy solutions for that. 
+All *.spec.js files are piped to mocha, there is no client/e2e tests, but you can still use mocha to test client js code, just make sure there's no external dependecies in the code (or inject those), taking TDD approach would most likely produce easy solutions for that.
