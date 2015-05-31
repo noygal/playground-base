@@ -24,7 +24,7 @@ var paths = {
   src : 'src/',
   js : 'src/**/*.js',
   jsPublic : 'src/public/app.js',
-  jsPublicAll : 'src/public/**/*.js',
+  jsPublicAll : ['src/public/**/*.js', 'src/public/**/*.jsx'],
   html : 'src/**/*.html',
   less : 'src/public/style.less',
   spec : 'src/**/*.spec.js',
@@ -64,7 +64,7 @@ gulp.task('build:jsPublic', function() {
       entries: paths.jsPublic,
       debug: true
     })
-    .transform(babelify)
+    .transform(babelify, { stage: 0 })
     .bundle()
     .pipe(source('app.js'))
     .pipe(gulp.dest(paths.distPublic));

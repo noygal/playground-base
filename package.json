@@ -36,7 +36,9 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "compression": "^1.4.4",
     "express": "^4.12.3",
+    "lodash": "^3.9.3",
     "react": "^0.13.3"
   }
 }
