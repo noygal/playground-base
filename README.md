@@ -9,6 +9,12 @@ npm install
 gulp
 ```
 
+To launch electron app
+```
+gulp run
+```
+You MUST install electron and to set the path in the `run` task on the 'gulpfile.js'.
+
 Then point your browser to [http://localhost:3000/](http://localhost:3000/)
 
 CollapsibleSection component can be found [here](https://github.com/noygal/playground-base/blob/react/src/public/module/CollapsibleSection.jsx)
