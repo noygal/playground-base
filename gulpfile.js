@@ -52,23 +52,31 @@ function createGulpTask(taskName, options) {
 }
 
 createGulpTask('build:js', {
-  src : [paths.js, '!' + paths.spec, '!' + paths.jsPublic],
+  src : [paths.js, '!' + paths.spec, '!' + paths.jsPublicAll[1]],
   dest : paths.dist,
   plugins : [{
     bin: babel
   }]
 });
 
-gulp.task('build:jsPublic', function() {
-    browserify({
-      entries: paths.jsPublic,
-      debug: true
-    })
-    .transform(babelify, { stage: 0 })
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(gulp.dest(paths.distPublic));
+createGulpTask('build:jsPublic', {
+  src : paths.jsPublicAll,
+  dest : paths.distPublic,
+  plugins : [{
+    bin: babel
+  }]
 });
+
+// gulp.task('build:jsPublic', function() {
+//     browserify({
+//       entries: paths.jsPublic,
+//       debug: true
+//     })
+//     .transform(babelify, { stage: 0 })
+//     .bundle()
+//     .pipe(source('app.js'))
+//     .pipe(gulp.dest(paths.distPublic));
+// });
 
 createGulpTask('test:js', {
   src : paths.spec,
@@ -108,7 +116,11 @@ gulp.task('clean:all', function (cb) {
     'node_modules'
   ], cb);
 });
-
+var run = require('gulp-run');
+// Use gulp-run to start a pipeline
+gulp.task('run', function () {
+  run('/opt/homebrew-cask/Caskroom/electron/0.29.2/Electron.app/Contents/MacOS/Electron . &').exec();
+});
 gulp.task('serve', function () {
   nodemon({
     script: paths.dist + 'server.js',
@@ -127,10 +139,10 @@ gulp.task('watch', function() {
   watches.forEach(function(watch) {
     gulp.watch(watch.src, [watch.task]);
   });
-   gulp.watch(paths.jsPublicAll, ['build:jsPublic']);
+  //  gulp.watch(paths.jsPublicAll, ['build:jsPublic']);
 });
 
-gulp.task('dev', gulpSequence('build', 'watch', 'serve'));
+gulp.task('dev', gulpSequence('build', 'watch'));
 
 gulp.task('default', ['dev']);
 

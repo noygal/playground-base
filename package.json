@@ -2,7 +2,7 @@
   "name": "playground-base",
   "version": "1.0.0",
   "description": "Base project to be use as a template",
-  "main": "/bin/index.js",
+  "main": "dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,13 +31,12 @@
     "gulp-less": "^3.0.3",
     "gulp-mocha": "^2.1.0",
     "gulp-nodemon": "^2.0.3",
+    "gulp-run": "^1.6.8",
     "gulp-sequence": "^0.3.2",
     "managed-bower": "^0.0.4",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "compression": "^1.4.4",
-    "express": "^4.12.3",
     "lodash": "^3.9.3",
     "react": "^0.13.3"
   }

@@ -16,10 +16,13 @@ export class CollapsibleSection extends React.Component  {
 	constructor(props) {
     super(props);
     this.state = {title: props.title, open : props.open};
+    this.toggle = () => {
+  		this.setState({open : !this.state.open})
+  	}
   }
-	toggle = () => {
-		this.setState({open : !this.state.open})
-	}
+	// toggle = () => {
+	// 	this.setState({open : !this.state.open})
+	// }
   render() {
 		let padding = '1rem';
 		let wrapperStyle = {

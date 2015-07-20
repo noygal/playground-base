@@ -8,6 +8,6 @@ var React = require('react');
 // //https://github.com/zilverline/react-tap-event-plugin
 // injectTapEventPlugin();
 
-var Layout = require('./module/Layout.jsx');
+var Layout = require('./module/Layout.js');
 
 React.render(React.createElement(Layout.Layout, null), document.body);
