@@ -4,7 +4,9 @@
   "description": "Base project to be use as a template",
   "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch" : "gulp watch", 
+    "build" : "gulp build",
+    "run": "gulp run"
   },
   "repository": {
     "type": "git",
