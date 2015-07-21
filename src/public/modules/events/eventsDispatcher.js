@@ -2,6 +2,8 @@ var Reflux = require('reflux');
 var _taskBuilder = require('../tasks/taskBuilder.js');
 var taskBuilder = new _taskBuilder();
 
+var _taskRunner = require('../runner/TaskRunner.js');
+
 //adding tasks
 var _taskAdded = Reflux.createAction();
 
@@ -9,9 +11,18 @@ var _tasksStore = Reflux.createStore({
     init: function() {
         this.listenTo(_taskAdded, this.runTask);
     },
-    runTask: function() {
-        var i, args = Array.prototype.slice.call(arguments, 0);
-        this.trigger('taskAdded',args.join(','));
+    runTask: function(item) {
+        debugger;
+        var runner = new _taskRunner(item.cmd);
+        runner.onUpdate = function(x){
+            debugger;
+        }
+        runner.onError = function(x){
+            debugger;
+        }
+        runner.onExit= function(x){
+            debugger;
+        }
     }
 });
 

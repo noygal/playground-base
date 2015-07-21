@@ -4,23 +4,21 @@ export class taskList extends React.Component {
     constructor(){
         super();
         this.state = {
-            tasks:[{name: "task1", status:"init"},
-                {name: "task2", status:"started"},
-                {name: "task3", status:"finished"},
-                {name: "task4", status:"error"}]
+            tasks:[]
         }
         eventsDispatcher.pathStore.listen((tasks) => {
-            this.state.tasks = tasks;
+            this.setState({
+              tasks : tasks.npm
+            });
         })
     }
     handleClick(item){
-        debugger;
-        alert(item);
+        eventsDispatcher.runTask(item);
     }
     render() {
         return (
             <div className="commentBox">
-            { 
+            {               
               this.state.tasks.map((item) => {
                    var boundClick = this.handleClick.bind(this, item);
                   var classname = "section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp task-status-" + item.status;
