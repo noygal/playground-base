@@ -83,6 +83,8 @@ createGulpTask('build:jsPublic', {
 createGulpTask('test:js', {
   src : paths.spec,
   plugins : [{
+    bin: babel
+  },{
     bin : mocha
   }]
 });
