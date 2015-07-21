@@ -6,7 +6,7 @@ export default class TaskBuilder {
   }
   processPath(projectPath) {
     var results = {
-      npm : this.npmParser.processPath(projectPath)
+      npm : this.npmParser.parsePath(projectPath)
     }
     return results
   }
