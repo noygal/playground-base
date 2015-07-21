@@ -12,7 +12,19 @@ var Layout = require('./components/Layout.js');
 
 React.render(React.createElement(Layout.Layout, null), document.getElementById('tmp'));
 
+var remote = require('remote');
+var dialog = remote.require('dialog');
 
+function openDirectory() {
+  var selected = dialog.showOpenDialog({
+		properties: ['openDirectory']
+	});
+	if(!selected) {
+		return;
+	}
+	var file = selected[0];
+  eventsDispatcher.addPath(file);
+}
 
 // //to use events
 // eventsDispatcher.taskStore.listen(function() {
