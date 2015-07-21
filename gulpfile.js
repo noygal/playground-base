@@ -47,7 +47,7 @@ gulp.task('electron', function(done) {
     out : paths.bin,
     overwrite : true
   }, function(error, appPath){
-    console.log(appPath)
+    // console.log(appPath)
     done(error)
   })
 })
