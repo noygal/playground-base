@@ -1,6 +1,6 @@
 var Reflux = require('reflux');
 var _taskBuilder = require('../tasks/taskBuilder.js');
-var TaskBuilder = new _taskBuilder.TaskBuilder();
+var taskBuilder = new _taskBuilder();
 
 //adding tasks
 var _taskAdded = Reflux.createAction();
@@ -37,4 +37,3 @@ module.exports = {
     addPath : _pathAdded,
     pathStore : _pathStore
 }
-

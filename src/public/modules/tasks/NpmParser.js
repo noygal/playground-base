@@ -1,6 +1,6 @@
 import path from 'path'
 
-export class NpmParser {
+export default class NpmParser {
   constructor() {
 
   }
