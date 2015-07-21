@@ -127,7 +127,8 @@ createGulpTask('build:less', {
 
 gulp.task('clean', function (cb) {
   del([
-    paths.dist,
+    paths.dist + '*',
+    '!' + paths.dist + 'package.json',
     paths.bin
   ], cb);
 });
@@ -169,6 +170,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('dev', gulpSequence('build', 'watch'));
+gulp.task('bin', gulpSequence('clean', 'build', 'electron'));
 
 gulp.task('default', ['dev']);
 
