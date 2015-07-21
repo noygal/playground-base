@@ -11,8 +11,8 @@ export class NpmParser {
       return null
     }
   }
-  _processPackage(pack, path) {
-    if (!path.scripts) projectPath null
+  _processPackage(pack, projectPath) {
+    if (!path.scripts) return null
     return Object.keys(path.scripts).map((key) => {
       return {
         name: key,
