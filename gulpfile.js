@@ -126,6 +126,7 @@ gulp.task('run', function () {
  // run('/opt/homebrew-cask/Caskroom/electron/0.29.2/Electron.app/Contents/MacOS/Electron . &').exec();
 });
 gulp.task('runAndBuild', gulpSequence('build', 'run'));
+
 gulp.task('serve', function () {
   nodemon({
     script: paths.dist + 'server.js',
