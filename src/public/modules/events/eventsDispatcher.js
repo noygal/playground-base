@@ -1,6 +1,6 @@
 var Reflux = require('reflux');
-var taskBuilder = require('../tasks/taskBuilder.js');
-
+var _taskBuilder = require('../tasks/taskBuilder.js');
+var TaskBuilder = new _taskBuilder.TaskBuilder();
 
 //adding tasks
 var _taskAdded = Reflux.createAction();
@@ -25,7 +25,7 @@ var _pathStore = Reflux.createStore({
     },
     parsePath : function(path){
         console.log(path);
-        var result = taskBuilder.processPath(path);
+        var result = TaskBuilder.processPath(path);
         this.trigger(result);
     }
 });
