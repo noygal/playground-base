@@ -10,7 +10,7 @@ var React = require('react');
 var eventsDispatcher = require('./modules/events/eventsDispatcher.js')
 var Layout = require('./components/Layout.js');
 
-React.render(React.createElement(Layout.Layout, null), document.body);
+React.render(React.createElement(Layout.Layout, null), document.getElementById('tmp'));
 
 //to use events
 // eventsDispatcher.taskStore.listen(function() {
