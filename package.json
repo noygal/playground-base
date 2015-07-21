@@ -35,6 +35,7 @@
     "gulp-run": "^1.6.8",
     "gulp-sequence": "^0.3.2",
     "managed-bower": "^0.0.4",
+    "reflux": "^0.2.10",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
