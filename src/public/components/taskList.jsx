@@ -26,12 +26,12 @@ export class taskList extends React.Component {
                 if(status == "started")
                 {
                   x.error = null;
+                  x.data = '';
                 }
-                var chunk = status === "update" ? data.replace(/\n/g, "<br />") : '';
-                var newData = status == "started" ? "" : (x.data + chunk);
+                var chunk = typeof data === "string" ? data.replace(/\n/g, "<br />") : '';
                 x.status = status;
-                x.data = newData;
-                if(status == "exit"){
+                x.data+= chunk;
+                if(status === "exit"){
                     console.log(data)
                     x.error = data;
                 }
