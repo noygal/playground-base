@@ -118,9 +118,10 @@ gulp.task('clean:all', function (cb) {
 });
 var run = require('gulp-run');
 // Use gulp-run to start a pipeline
-gulp.task('run', function () {
-  run('/opt/homebrew-cask/Caskroom/electron/0.29.2/Electron.app/Contents/MacOS/Electron . &').exec();
+gulp.task('runElectron', function () {
+  run('electron . &').exec();
 });
+gulp.task('run', gulpSequence('build', 'runElectron'));
 gulp.task('serve', function () {
   nodemon({
     script: paths.dist + 'server.js',
