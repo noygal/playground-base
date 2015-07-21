@@ -11,6 +11,26 @@ export class taskList extends React.Component {
               tasks : tasks.npm
             });
         })
+         eventsDispatcher.taskStore.listen((eventName,eventObject) => {
+          switch(eventName){
+            case 'started': setItemStarted(eventObject.name);
+                break;
+          }
+            
+        })
+
+        function setItemStarted(name){
+             var newTasks = this.state.tasks.map(function(x){
+              if(x.name == name)
+              {
+                x.status = "started";
+              }
+              return x;
+             });
+              this.setState({
+                tasks : newTasks
+              })
+        }
     }
     handleClick(item){
         eventsDispatcher.runTask(item);
@@ -20,6 +40,7 @@ export class taskList extends React.Component {
             <div className="commentBox">
             {               
               this.state.tasks.map((item) => {
+                debugger;
                    var boundClick = this.handleClick.bind(this, item);
                   var classname = "section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp task-status-" + item.status;
                    return <section className={classname} >

@@ -12,17 +12,18 @@ var _tasksStore = Reflux.createStore({
         this.listenTo(_taskAdded, this.runTask);
     },
     runTask: function(item) {
-        debugger;
-        var runner = new _taskRunner(item.cmd);
+        // var runner = new _taskRunner(item.cmd);
+        var runner = {};
         runner.onUpdate = function(x){
-            debugger;
+            this.trigger("update",x);
         }
         runner.onError = function(x){
-            debugger;
+            this.trigger("error",x);
         }
         runner.onExit= function(x){
-            debugger;
+            this.trigger("exit",x);
         }
+        this.trigger("started",item);
     }
 });
 
@@ -37,7 +38,6 @@ var _pathStore = Reflux.createStore({
     parsePath : function(path){
         console.log(path);
         var result = taskBuilder.processPath(path);
-        debugger;
         this.trigger(result);
     }
 });
