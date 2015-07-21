@@ -12,8 +12,8 @@ export default class NpmParser {
     }
   }
   _processPackage(pack, projectPath) {
-    if (!path.scripts) return null
-    return Object.keys(path.scripts).map((key) => {
+    if (!pack.scripts) return null
+    return Object.keys(pack.scripts).map((key) => {
       return {
         name: key,
         cmd : path.join(projectPath, 'npm run ' + key)
