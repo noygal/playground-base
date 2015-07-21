@@ -127,8 +127,8 @@ createGulpTask('build:less', {
 
 gulp.task('clean', function (cb) {
   del([
-    paths.dist + '*',
-    '!' + paths.dist + 'package.json',
+    paths.dist + '!package.json',
+    // '!' + paths.dist + 'package.json',
     paths.bin
   ], cb);
 });
