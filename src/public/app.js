@@ -7,18 +7,20 @@ var React = require('react');
 // //Check this repo:
 // //https://github.com/zilverline/react-tap-event-plugin
 // injectTapEventPlugin();
-var eventsDispatcher = require('./modules/events/eventsDispatcher.js')
+var eventsDispatcher = require('./modules/events/eventsDispatcher.js');
 var Layout = require('./components/Layout.js');
 
 React.render(React.createElement(Layout.Layout, null), document.getElementById('tmp'));
 
-//to use events
+
+
+// //to use events
 // eventsDispatcher.taskStore.listen(function() {
 //     var i, args = Array.prototype.slice.call(arguments, 0);
 //     for (i = 0; i < args.length; i++) {
-//         console.log("haahah" + args[i]);
+//         console.log(args[i]);
 //     }
 // })
 
 
-eventsDispatcher.AddTask.triggerAsync("aasdfsad", "2", "3");
+// eventsDispatcher.runTask.triggerAsync("aasdfsad", {  c: [1,2,3]});
