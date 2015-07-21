@@ -25,7 +25,8 @@ var _pathStore = Reflux.createStore({
     },
     parsePath : function(path){
         console.log(path);
-        var result = TaskBuilder.processPath(path);
+        var result = taskBuilder.processPath(path);
+        debugger;
         this.trigger(result);
     }
 });
