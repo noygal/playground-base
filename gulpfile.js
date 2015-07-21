@@ -118,10 +118,10 @@ gulp.task('clean:all', function (cb) {
 });
 var run = require('gulp-run');
 // Use gulp-run to start a pipeline
-gulp.task('runElectron', function () {
+gulp.task('run', function () {
   run('electron . &').exec();
 });
-gulp.task('run', gulpSequence('build', 'runElectron'));
+gulp.task('runAndBuild', gulpSequence('build', 'run'));
 gulp.task('serve', function () {
   nodemon({
     script: paths.dist + 'server.js',
