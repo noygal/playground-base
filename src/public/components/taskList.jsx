@@ -1,7 +1,7 @@
 
 
 var React = require('react');
-var eventsDispatcher = require('./modules/events/eventsDispatcher.js');
+var eventsDispatcher = require('../modules/events/eventsDispatcher.js');
 export class taskList extends React.Component {
     constructor(){
         super();
@@ -19,8 +19,9 @@ export class taskList extends React.Component {
         return (
             <div className="commentBox">
             { this.state.tasks.map(function(item) {
-                var boundClick = this.handleClick.bind(this, item);
-                return <div onClick="boundClick">{item}</div>
+                // var boundClick = this.handleClick.bind(this, item);
+                // return <div onClick="boundClick">{item}</div>
+                   return <div >{item}</div>
             })
                 }
             </div>
