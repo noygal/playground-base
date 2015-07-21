@@ -13,7 +13,7 @@ export class taskList extends React.Component {
         })
          eventsDispatcher.taskStore.listen((eventName,eventObject) => {
           switch(eventName){
-            case 'started': setItemStarted(eventObject.name);
+            case 'started': setItemStarted.call(this,eventObject.name);
                 break;
           }
             

@@ -14,12 +14,15 @@ var _tasksStore = Reflux.createStore({
     runTask: function(item) {
         var runner = new _taskRunner(item.cmd);
         runner.onUpdate((x) => {
+            console.log("update");
             this.trigger("update",x);
         })
         runner.onError((x) => {
+            console.log("error");
             this.trigger("error",x);
         })
         runner.onExit((x) => {
+             console.log("exit");
             this.trigger("exit",x);
         })
         this.trigger("started",item);
