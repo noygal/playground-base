@@ -4,8 +4,8 @@
   "description": "Base project to be use as a template",
   "main": "dist/main.js",
   "scripts": {
-    "watch" : "gulp watch", 
-    "build" : "gulp build",
+    "watch": "gulp watch",
+    "build": "gulp build",
     "run": "gulp run"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "babelify": "^6.1.2",
     "browserify": "^10.2.1",
     "del": "^1.2.0",
+    "electron-packager": "^5.0.1",
     "electron-prebuilt": "^0.30.0",
     "gulp": "^3.8.11",
     "gulp-babel": "^5.1.0",

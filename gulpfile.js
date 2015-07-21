@@ -21,6 +21,7 @@ var electron = require('electron-prebuilt')
 var proc = require('child_process')
 
 var paths = {
+  bin : 'bin/',
   dist : 'dist/',
   distPublic : 'dist/public',
   src : 'src/',
@@ -34,6 +35,22 @@ var paths = {
 };
 
 var watches = [];
+
+var packager = require('electron-packager')
+gulp.task('electron', function(done) {
+  packager({
+    dir : paths.dist,
+    name : require('./' + paths.dist + 'package.json').name,
+    platform : 'all',
+    arch : 'x64',
+    version : '0.30.0',
+    out : paths.bin,
+    overwrite : true
+  }, function(error, appPath){
+    console.log(appPath)
+    done(error)
+  })
+})
 
 function createGulpTask(taskName, options) {
   watches.push({
@@ -110,7 +127,8 @@ createGulpTask('build:less', {
 
 gulp.task('clean', function (cb) {
   del([
-    paths.dist
+    paths.dist,
+    paths.bin
   ], cb);
 });
 
