@@ -28,7 +28,7 @@ var paths = {
   jsPublic : 'src/public/app.js',
   jsPublicAll : ['src/public/**/*.js', 'src/public/**/*.jsx'],
   html : 'src/**/*.html',
-  less : ['src/public/style.less','src/public/lib/**/*.css'],
+  less : ['src/public/style.less','src/public/**/*.css'],
   spec : 'src/**/*.spec.js',
   clean : ['dist/**/*']
 };
