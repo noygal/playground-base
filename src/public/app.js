@@ -1,5 +1,5 @@
 var React = require('react');
-
+var $ = require('jquery');
 // var injectTapEventPlugin = require('react-tap-event-plugin');
 //
 // //Needed for onTouchTap
@@ -20,16 +20,25 @@ var remote = require('remote');
 var dialog = remote.require('dialog');
 
 function openDirectory() {
-  var selected = dialog.showOpenDialog({
-		properties: ['openDirectory']
-	});
-	if(!selected) {
-		return;
-	}
-	var file = selected[0];
-  eventsDispatcher.addPath(file);
+    var selected = dialog.showOpenDialog({
+        properties: ['openDirectory']
+    });
+    if (!selected) {
+        return;
+    }
+    var file = selected[0];
+    directoryChosen(true);
+    eventsDispatcher.addPath(file);
 }
 
+function directoryChosen(show) {
+    $("#mainSpinner").toggle(show);
+    $("#add").toggle(!show);
+}
+
+eventsDispatcher.pathStore.listen((tasks) => {
+directoryChosen(false);
+})
 
 
 // //to use events

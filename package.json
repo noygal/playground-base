@@ -4,8 +4,8 @@
   "description": "Base project to be use as a template",
   "main": "dist/main.js",
   "scripts": {
-    "watch" : "gulp watch", 
-    "build" : "gulp build",
+    "watch": "gulp watch",
+    "build": "gulp build",
     "run": "gulp run"
   },
   "repository": {
@@ -40,6 +40,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "jquery": "^2.1.4",
     "lodash": "^3.9.3",
     "ps-tree": "^1.0.0",
     "react": "^0.13.3",
