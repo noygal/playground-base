@@ -9,9 +9,13 @@ var React = require('react');
 // injectTapEventPlugin();
 var eventsDispatcher = require('./modules/events/eventsDispatcher.js');
 var Layout = require('./components/Layout.js');
+var taskList = require('./components/taskList.js');
 
-React.render(React.createElement(Layout.Layout, null), document.getElementById('tmp'));
+//React.render(React.createElement(Layout.Layout, null), document.getElementById('tmp'));
 
+React.render(React.createElement(taskList.taskList, null),
+    document.getElementById('proj1')
+);
 var remote = require('remote');
 var dialog = remote.require('dialog');
 
@@ -25,6 +29,8 @@ function openDirectory() {
 	var file = selected[0];
   eventsDispatcher.addPath(file);
 }
+
+
 
 // //to use events
 // eventsDispatcher.taskStore.listen(function() {
