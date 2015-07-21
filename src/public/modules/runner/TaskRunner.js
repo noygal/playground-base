@@ -32,13 +32,13 @@ export default class TaskRunner {
     this._child = exec(path.basename(cmd), {
       cwd: path.dirname(cmd)
     }, function(error, stdout, stderr) {});
-    this._this._child.stdout.on('data', function(data) {
+    this._child.stdout.on('data', (data) => {
       this._updateHandler(data)
     });
-    this._child.stderr.on('data', function(data) {
+    this._child.stderr.on('data', (data) => {
       this._errorHandler(data)
     });
-    this._child.on('close', function(code) {
+    this._child.on('close', (code) => {
       this._exitHandler(code);
     });
   }
