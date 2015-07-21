@@ -17,6 +17,8 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var nodemon = require('gulp-nodemon');
 var managedBower = require('managed-bower');
+var electron = require('electron-prebuilt')
+var proc = require('child_process')
 
 var paths = {
   dist : 'dist/',
@@ -119,7 +121,9 @@ gulp.task('clean:all', function (cb) {
 var run = require('gulp-run');
 // Use gulp-run to start a pipeline
 gulp.task('run', function () {
-  run('electron . &').exec();
+  var p = proc.spawn(electron,['dist/main.js']);
+
+ // run('/opt/homebrew-cask/Caskroom/electron/0.29.2/Electron.app/Contents/MacOS/Electron . &').exec();
 });
 gulp.task('runAndBuild', gulpSequence('build', 'run'));
 gulp.task('serve', function () {
