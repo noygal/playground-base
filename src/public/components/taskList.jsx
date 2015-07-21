@@ -1,5 +1,6 @@
 var React = require('react');
 var eventsDispatcher = require('../modules/events/eventsDispatcher.js');
+var $ = require('jquery');
 export class taskList extends React.Component {
     constructor(){
         super();
@@ -7,55 +8,76 @@ export class taskList extends React.Component {
             tasks:[]
         }
         eventsDispatcher.pathStore.listen((tasks) => {
+          
             this.setState({
-              tasks : tasks.npm
+              tasks : tasks.gulp
             });
         })
-         eventsDispatcher.taskStore.listen((eventName,eventObject) => {
-          switch(eventName){
-            case 'started': setItemStarted.call(this,eventObject.name);
-                break;
-          }
-            
-        })
-
-        function setItemStarted(name){
-             var newTasks = this.state.tasks.map(function(x){
-              if(x.name == name)
+         eventsDispatcher.taskStore.listen((status,eventObject,data) => {
+           var newTasks = this.state.tasks.map(function(x){
+              if(x.name == eventObject.name)
               {
-                x.status = "started";
+                if(status == "started")
+                {
+                  x.error = null;
+                }
+                var newData = status == "started" ? "" : (x.data + data);
+                x.status = status;
+                x.data = newData;
+                if(status == "error"){
+                    x.error = data;
+                }
               }
               return x;
-             });
-              this.setState({
+          });
+           this.setState({
                 tasks : newTasks
               })
-        }
+        })
     }
+
     handleClick(item){
         eventsDispatcher.runTask(item);
     }
     render() {
+       $("#mainSpinner").hide();
         return (
             <div className="commentBox">
             {               
               this.state.tasks.map((item) => {
-                debugger;
                    var boundClick = this.handleClick.bind(this, item);
                   var classname = "section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp task-status-" + item.status;
                    return <section className={classname} >
                        <header className="section__play-btn mdl-cell mdl-button mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-                           <i onClick={boundClick} className="material-icons">add</i>
+                          {
+                            item.status == "started" ? 
+                             <i className="material-icons">av_timer</i> :
+                           <i onClick={boundClick} className="material-icons">play_arrow</i>
+
+                          }
                        </header>
                        <div className="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-                           <div className="mdl-card__supporting-text">
+                           <div className="">
                                <h4>{item.name}</h4>
                            </div>
+                            <div style={{height:'105px',overflow:'auto'}}>{item.data}</div>
+                            
+                            {
+                              item.error ? 
+                               <i className="material-icons" style={{position:'absolute', top:'10px', right:'10px'}}>error</i> :
+                                 (item.status == "exit" &&  <i className="material-icons" style={{position:'absolute', top:'10px', right:'10px'}}>done</i>)
+                            }
+
+                           
+                           
+                           { (item.status == "started" && <div className="taskStatus" style={{position:'absolute', bottom:'10px', right:'10px'}}>running...</div>) }
+                          
                        </div>
                    </section>
             })
                 }
             </div>
         );
+   
     }
 }
