@@ -1,8 +1,8 @@
-import NpmParser from './NpmParser'
+import _npmParser from './NpmParser'
 
-export class TaskBuilder {
+export default class TaskBuilder {
   constructor() {
-    this.npmParser = new npmParser();
+    this.npmParser = new _npmParser();
   }
   processPath(projectPath) {
     var results = {
